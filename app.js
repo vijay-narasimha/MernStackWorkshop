@@ -6,6 +6,8 @@ const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
 const cookieparser = require('cookie-parser');
+const compression=require('compression')
+
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -49,7 +51,8 @@ app.use(
   })
 );
 
-//hello
+
+app.use(compression())
 
 const Limiter = rateLimit({
   max: 100,

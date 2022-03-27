@@ -6,14 +6,14 @@ import { showAlert } from './alerts';
 export const bookTour = async (tourid) => {
     try{
   const session = await axios(
-    `http://localhost:3000/api/v1/bookings/checkout-session/${tourid}`
+    `/api/v1/bookings/checkout-session/${tourid}`
   );
 
   await stripe.redirectToCheckout({
       sessionId:session.data.session.id
   })
     }catch(err){
-        console.log(err)
+       // console.log(err)
         showAlert('error',err)
     }
 
