@@ -6,8 +6,7 @@ const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
 const cookieparser = require('cookie-parser');
-const compression=require('compression')
-
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -19,6 +18,8 @@ const path = require('path');
 const viewRouter = require('./routes/viewRouter');
 
 const app = express();
+
+app.enable('trust proxy');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -51,8 +52,7 @@ app.use(
   })
 );
 
-
-app.use(compression())
+app.use(compression());
 
 const Limiter = rateLimit({
   max: 100,
