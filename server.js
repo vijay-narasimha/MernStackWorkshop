@@ -3,7 +3,12 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATABASE.replace(
+// const DB = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD
+// );
+
+const DB = "mongodb+srv://vijay:<PASSWORD>@cluster0.4ljk9.mongodb.net/natours?retryWrites=true&w=majority".replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
