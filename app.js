@@ -16,6 +16,7 @@ const reviewRouter = require('./routes/reviewRouter');
 const bookingsRouter = require('./routes/bookingsRouter');
 const path = require('path');
 const viewRouter = require('./routes/viewRouter');
+const cors = require('cors');
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.enable('trust proxy');
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
+app.options('*', cors());
 
 app.use(helmet());
 
