@@ -3,7 +3,6 @@ import { showAlert } from './alerts';
 
 export const login = async (email, password) => {
   try {
-  
     const res = await axios({
       method: 'POST',
       url: '/api/v1/users/login',
@@ -14,6 +13,31 @@ export const login = async (email, password) => {
     });
     if (res.data.status === 'success') {
       showAlert('success', 'Logged in successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      });
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
+
+export const signup = async (name, email, password, passwordconfirm) => {
+  
+  try {
+
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/users/signup',
+      data: {
+        name,
+        email,
+        password,
+        passwordConfirm:passwordconfirm
+      },
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Signup successfully');
       window.setTimeout(() => {
         location.assign('/');
       });
@@ -34,7 +58,7 @@ export const logout = async () => {
       location.reload(true);
     }
   } catch (err) {
-   // console.log(err.response);
+    // console.log(err.response);
     showAlert('error', 'error logging out! Try again');
   }
 };
